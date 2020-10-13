@@ -202,9 +202,9 @@ legend("topleft",
        box.lty=0,
        cex = 0.8)
 mtext("*Estimates for 2 different growth rates",side=1,line=3,outer=F,
-      cex=0.8,adj=1,at=c(1965.5),font=3)
+      cex=0.8,adj=1,at=c(1968),font=3)
 mtext("Source: Own calculations from World Population Prospects, 2019 revision",side=1,line=4,outer=F,
-      cex=0.8,adj=1,at=c(1991),font=3)
+      cex=0.8,adj=1,at=c(1997),font=3)
 
 
 ```
@@ -227,9 +227,9 @@ legend("topleft",
        box.lty=0,
        cex = 0.8)
 mtext("*Estimates for 2 different growth rates",side=1,line=3,outer=F,
-      cex=0.8,adj=1,at=c(1965.5),font=3)
+      cex=0.8,adj=1,at=c(1968),font=3)
 mtext("Source: Own calculations from World Population Prospects, 2019 revision",side=1,line=4,outer=F,
-      cex=0.8,adj=1,at=c(1991),font=3)
+      cex=0.8,adj=1,at=c(1997),font=3)
 
 ```
 
@@ -238,7 +238,7 @@ f. Briefly discuss the differences among the three countries, and which of the e
 
 [Sol.]
 
-From the graph we can note that in the three countries, the blue line, which is considering the growth rates form 1990 to 2015, produce lower population estimates compared to the one considering the 1950-2015 rate. This makes sense considering that these three countries experimented the second phase of the demographic somewhen between 1950-1990, meaning that the fertility rates lowered within the period producing lower population estimates. As there was a disrupting event, it is better considering the rates calculated with data form the begining and the end of the estimation period.
+From the graph we can note that in the three countries, the blue line, which is considering the growth rates from 1990 to 2015, produce lower population estimates compared to the one considering the 1950-2015 rate. This makes sense considering that these three countries experimented the second phase of the demographic transition somewhen between 1950-1990, meaning that the fertility rates lowered within the period producing lower population estimates. As there was a disrupting event, it is better considering the rates calculated with data form the begining and the end of the estimation period.
 
 Comparing the three countries, they differ the most on their population sizes, but also in the speed of their growth (measured with the rate of growth), which is also a phenomena that can be appreciated in the graph by comparing the slopes of the lines. 
 
@@ -249,18 +249,21 @@ A man aged 30 marries a woman aged 25. Express in symbols the expected number of
 
 [Sol.]
 
-The time the man will be alive is $e_{30}^M$ and the woman $e_{25}^F$.We also know that $e_x=\int_x^\infty e^{-\int_x^a\mu(y)dy}da$. Therefore,
+The time they will be alive can be considered as a joint decrement process, because the risk of dying conjunctly are wether one dies first or the other. So what needs to be calculated is $e_{30:25}^o$. 
 
-$$e_{30}^M=\int_{30}^{\infty}e^{-\int_x^a \mu(y)dy}da=\int_{30}^{\infty}e^{-\int_{30}^a (0.02)dy}da=\int_{30}^\infty e^{-(0.02)y|_{30}^a}da=\int_{30}^\infty e^{-[(0.02)a-(0.02)*30]}da=$$
+On one hand we know that $e_x^o=\int_x^\infty \frac{l(x+n)}{l(x)dn}$ and $_np_x=\frac{l(x+n)}{l(x)} \therefore e_x^o=\int_0^\infty$$_tp_x dt$ and by definition, $_tp_x=e^{-\int_x^{x+n}\mu(a)da}$. 
 
-$$\int_{30}^\infty e^{-0.02a}*e^{0.6}da=e^{0.6}\int_{30}^\infty e^{-0.02a}da=e^{0.6}\frac{-1}{(0.02)}e^{-0.02a|_{30}^\infty}=0-e^{0.6}\frac{-1}{(0.02)}e^{-0.02*30}=\frac{1}{0.02}=50$$
-Conversely,
+On the other hand, if we assume independence $_tp_{x:y}=_tp_x*_tp_y$. In this case, this is a convinient expression considering that the joint-life status survives if and only if both survive. Then:
 
-$$e_{25}^F=\int_{25}^{\infty}e^{-\int_{25}^a \mu(y)dy}da=\int_{25}^{\infty}e^{-\int_{25}^a (0.02)dy}da=\int_{25}^\infty e^{-(0.02)y|_{25}^a}da=\int_{25}^\infty e^{-[(0.02)a-(0.02)*25]}da=$$
-$$\int_{25}^\infty e^{-0.02a}*e^{0.5}da=e^{0.5}\int_{25}^\infty e^{-0.02a}da=e^{0.5}\frac{-1}{(0.02)}e^{-0.02a|_{25}^\infty}=0-e^{0.5}\frac{-1}{(0.02)}e^{-0.02*25}=\frac{1}{0.02}=50$$
+$$e_{30:25}^o=\int_0^\infty tp_{30:25}dt=\int_0^\infty tp_{30}\cdot_tp_{25}dt=\int_0^\infty e^{-\int_{30}^{30+t}\mu(a)da}\cdot e^{-\int_{25}^{25+t}\mu(a)da}$$
+
+$$=\int_0^\infty e^{0.02a|_{30}^{30+t}}\cdot e^{0.02a|_{25}^{25+t}}=\int_0^\infty e^{0.02(30+t-30)}\cdot e^{0.02(25+t-25)}$$
+
+$$=\int_0^\infty e^{-0.02t}\cdot e^{-0.02t}dt=\int_0^\infty e^{-0.04t}dt=\frac{e^{-0.04t}}{0.04}=25$$
+
 
 Therefore,
 
-the expected number of years they will both be alive is in average 50 years each one.This is an empiric example that, when the mortality force remains constant the life expectancy is the same at every age, because there are not differences in the "way" people from age to age dies (or among sexes). This is an unrealistic scenario that can only happen if there is an homogenous population without biological aging or mortality risk sex/age/social differences.
+the expected number of years each one in and independent way will  be alive is in average 50 years, however this time is 25 considering the joint expectancy.This is an empiric example that, when the mortality force remains constant the life expectancy is the same at every age, because there are not differences in the "way" people from age to age dies (or among sexes). This is an unrealistic scenario that can only happen if there is an homogenous population without biological aging or mortality risk sex/age/social differences.
 
 
